@@ -52,6 +52,13 @@ class Spaces
      Spaces.new(space['id'], space['name_of_space'], space['email'], space['description']) }.first
   end
 
+  def to_hash
+    {
+      name_of_space: @name_of_space,
+      email: @email,
+      description: @description
+    }
+  end
 
 
   private_class_method def self.database
