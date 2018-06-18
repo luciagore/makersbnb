@@ -1,12 +1,12 @@
 ENV['ENVIROMENT'] = 'test'
 ENV['RACK_ENV'] = 'test'
 
-Rake.application.load_rakefile
-
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'rake'
+
+Rake.application.load_rakefile
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 Capybara.app = BNBmanager
