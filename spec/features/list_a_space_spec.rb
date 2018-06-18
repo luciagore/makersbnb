@@ -8,7 +8,7 @@ feature 'list a space' do
 
     click_button('List my space')
 
-    wait_for_ajax
+    # wait_for_ajax
     expect(page).to have_content("Lucy's house")
     expect(page).to have_content('Home for rent!')
     expect(page).to have_content('test@example.com')

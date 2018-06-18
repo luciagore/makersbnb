@@ -1,6 +1,7 @@
-<div id="form">
+<%= flash[:invalid_notice] %>
+<form id="form" action = '/spaces/new' method = 'post'>
   <input type="text" id="name_of_space" name = "name_of_space">
   <input type="text" id="email" name = "email">
   <input type="text" id="description" name = 'description'>
-  <button id = "submit">List my space</button>
-</div>
+  <button id = "submit" type = 'submit'>List my space</button>
+</form>
