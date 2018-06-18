@@ -7,7 +7,6 @@ feature 'list a space' do
     fill_in('description', with: 'Home for rent!')
 
     click_button('List my space')
-    wait_for_ajax
     expect(page).to have_content("Lucys house")
     expect(page).to have_content('Home for rent!')
     expect(page).to have_content('test@example.com')

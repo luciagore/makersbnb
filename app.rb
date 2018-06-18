@@ -8,6 +8,10 @@ class BNBmanager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    erb :index
+  end
+
+  get '/getusers' do
     @spaces = Spaces.all
 
     content_type :json
