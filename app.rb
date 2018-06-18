@@ -11,7 +11,7 @@ class BNBmanager < Sinatra::Base
     erb :index
   end
 
-  get '/getusers' do
+  post '/getusers' do
     @spaces = Spaces.all
 
     content_type :json
