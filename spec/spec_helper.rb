@@ -5,6 +5,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'rake'
+require_relative './support/wait_for_ajax'
 
 Rake.application.load_rakefile
 

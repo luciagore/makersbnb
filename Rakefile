@@ -15,8 +15,10 @@ task :setup do
     connection = PG.connect
     connection.exec("CREATE DATABASE #{database};")
     connection = PG.connect(dbname: database)
-    connection.exec("CREATE TABLE spaces(id SERIAL PRIMARY KEY, \
-      name_of_space VARCHAR(30) UNIQUE, description VARCHAR(1000));")
+    connection.exec("CREATE TABLE spaces(id SERIAL PRIMARY KEY,
+      name_of_space VARCHAR(30) UNIQUE,
+      email VARCHAR(30),
+      description VARCHAR(1000));")
   end
 end
 
@@ -25,7 +27,7 @@ task :test_database_setup do
 
   connection = PG.connect(dbname: 'makersbnb_test')
 
-  connection.exec("TRUNCATE spaces;")
+  connection.exec("TRUNCATE spaces RESTART Identity;")
   connection.close
 end
 

@@ -8,5 +8,6 @@ gem 'sinatra'
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'rspec'
 end
