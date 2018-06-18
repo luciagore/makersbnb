@@ -2,12 +2,13 @@ require 'pg'
 
 class Spaces
 
-  attr_reader :id, :name_of_space, :description
+  attr_reader :id, :name_of_space, :description, :email
 
-  def initialize(id, name_of_space, description)
+  def initialize(id, name_of_space, email, description)
     @id = id
     @name_of_space = name_of_space
     @description = description
+    @email = email
   end
 
 
@@ -17,19 +18,30 @@ class Spaces
 
 
   def self.create(create)
-    sql_query = "INSERT INTO spaces (name_of_space, description)
-                 VALUES('#{create[:name_of_space]}', '#{create[:description]}')
+    sql_query = "INSERT INTO spaces (name_of_space, email, description)
+                 VALUES('#{create[:name_of_space]}', '#{create[:email]}', '#{create[:description]}')
                  RETURNING id, name_of_space, description"
 
     result = database.exec(sql_query)
-    Spaces.new(result.first['id'], result.first['name_of_space'], result.first['description'])
+    Spaces.new(
+      result.first['id'],
+      result.first['name_of_space'],
+      result.first['email'],
+      result.first['description']
+    )
   end
 
 
-  def self.read
+  def self.all
     sql_query = "SELECT * FROM spaces"
     database.exec(sql_query).map { |space|
-      Spaces.new(space['id'], space['name_of_space'], space['description']) }
+      Spaces.new(
+        space['id'],
+        space['name_of_space'],
+        space['email'],
+        space['description']
+        )
+       }
   end
 
 

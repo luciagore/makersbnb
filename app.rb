@@ -1,12 +1,14 @@
 require 'sinatra/base'
 require 'sinatra/flash'
-
+require_relative 'lib/spaces'
 # controller class
 class BNBmanager < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
+
   get '/' do
-    'hullo world'
+    @spaces = Spaces.all
+    erb :index
   end
 
   get '/spaces/new' do
@@ -14,8 +16,13 @@ class BNBmanager < Sinatra::Base
   end
 
   post '/spaces/new' do
-    flash[:invalid_notice] = "Lucy's house Home for rent! test@example.com"
-    redirect '/spaces/new'
+    p params['email']
+    Spaces.create(
+      name_of_space: params['name_of_space'],
+      email: params['email'],
+      description: params['description']
+    )
+    redirect '/'
   end
 
   run if app_file == $0
