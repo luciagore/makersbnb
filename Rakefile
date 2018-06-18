@@ -27,7 +27,7 @@ task :test_database_setup do
 
   connection = PG.connect(dbname: 'makersbnb_test')
 
-  connection.exec("TRUNCATE spaces RESTART Identity;")
+  connection.exec("TRUNCATE spaces RESTART IDENTITY;")
   connection.close
 end
 
