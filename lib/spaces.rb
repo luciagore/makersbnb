@@ -32,6 +32,14 @@ class Spaces
       Spaces.new(space['id'], space['name_of_space'], space['description']) }
   end
 
+  def self.find(id)
+    sql_query = "SELECT * FROM Spaces
+                 WHERE id = #{id}"
+
+    database.query(sql_query).map { |space|
+     Spaces.new(space['id'], space['name_of_space'], space['description']) }.first
+  end
+
 
 
   private_class_method def self.database

@@ -9,7 +9,7 @@ if ENV['RACK_ENV'] != 'production'
 end
 
 task :setup do
-  p "Creating databases..."
+  # p "Creating databases..."
 
   ['makersbnb', 'makersbnb_test'].each do |database|
     connection = PG.connect
@@ -23,7 +23,7 @@ task :setup do
 end
 
 task :test_database_setup do
-  p "Cleaning the database..."
+  # p "Cleaning the database..."
 
   connection = PG.connect(dbname: 'makersbnb_test')
 
