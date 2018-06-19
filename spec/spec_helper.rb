@@ -1,6 +1,7 @@
 ENV['ENVIROMENT'] = 'test'
 ENV['RACK_ENV'] = 'test'
 
+require 'mailer'
 require 'capybara'
 require 'capybara/rspec'
 require 'selenium-webdriver'
