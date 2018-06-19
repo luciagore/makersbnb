@@ -32,9 +32,6 @@ class BNBmanager < Sinatra::Base
     space.to_hash.to_json
   end
 
-  get '/test_ajax' do
-    erb :test_ajax
-  end
 
   run if app_file == $0
 end
