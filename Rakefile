@@ -6,7 +6,7 @@ if ENV['RACK_ENV'] != 'production'
   RSpec::Core::RakeTask.new :spec
 
   task default: [:spec]
-end 
+end
 
 task :setup do
   # p "Creating databases..."
@@ -19,6 +19,11 @@ task :setup do
       name_of_space VARCHAR(30) UNIQUE,
       email VARCHAR(30),
       description VARCHAR(1000));")
+    connection.exec("CREATE TABLE requests(id SERIAL PRIMARY KEY,
+      body VARCHAR(1000),
+      email VARCHAR(30),
+      timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT
+      (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'));")
   end
 end
 
@@ -36,6 +41,7 @@ task :test_database_setup do
   connection = PG.connect(dbname: 'makersbnb_test')
 
   connection.exec("TRUNCATE spaces RESTART IDENTITY;")
+  connection.exec("TRUNCATE requests RESTART IDENTITY;")
   connection.close
 end
 
