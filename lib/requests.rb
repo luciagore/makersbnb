@@ -53,6 +53,12 @@ class Requests
      Requests.new(request['id'], request['body'], request['email'], request['timestamp']) }.first
   end
 
+  def to_hash
+    {
+      body: @body,
+      email: @email
+    }
+  end
 
   private_class_method def self.database
     ENV['ENVIROMENT'] == 'test' \

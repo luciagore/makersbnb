@@ -1,7 +1,7 @@
 feature 'list a space' do
     scenario 'a user can request a space using email details' do
 
-        visit('/request')
+        visit('/newrequest')
 
         fill_in('body', with: 'some message request')
         fill_in('email', with: 'test@email.com')
