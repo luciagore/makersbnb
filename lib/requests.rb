@@ -20,17 +20,20 @@ class Requests
 
   def self.create(request)
     sql_query = "INSERT INTO requests (space_id, body, email)
-                 VALUES('#{request[:space_id]}', '#{request[:email]}', '#{request[:body]}')
-                 RETURNING id, space_id, email, body, timestamp"
+                 VALUES('#{request[:space_id]}','#{request[:body]}','#{request[:email]}')
+                 RETURNING id, space_id, body, email, timestamp"
 
     result = database.exec(sql_query)
-    Requests.new(
+    request = Requests.new(
       result.first['id'],
       result.first['space_id'],
       result.first['body'],
       result.first['email'],
       result.first['timestamp']
     )
+    space = Spaces.find(request.space_id)
+    Mailer.sendmail({about: space.name_of_space, message: request.body, from: request.email, to: space.email})
+    return request
   end
 
 
