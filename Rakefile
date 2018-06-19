@@ -22,14 +22,6 @@ task :setup do
   end
 end
 
-task :add_dummy do
-  connection = PG.connect(dbname: "makersbnb")
-  connection.exec("INSERT INTO spaces (name_of_space, email, description)
-               VALUES('test name', 'test@test.com', 'this is a test space');")
- connection.exec("INSERT INTO spaces (name_of_space, email, description)
-              VALUES('test other name', 'tester@test.com', 'this is a test spaced');")
-end
-
 task :test_database_setup do
   # p "Cleaning the database..."
 
