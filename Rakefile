@@ -17,8 +17,14 @@ task :setup do
     connection = PG.connect(dbname: database)
     connection.exec("CREATE TABLE spaces(id SERIAL PRIMARY KEY,
       name_of_space VARCHAR(30) UNIQUE,
-      email VARCHAR(30),
+      email VARCHAR(60),
       description VARCHAR(1000));")
+    connection.exec("CREATE TABLE requests(id SERIAL PRIMARY KEY,
+      space_id INTEGER REFERENCES spaces (id),
+      body VARCHAR(1000),
+      email VARCHAR(60),
+      timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT
+      (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'));")
   end
 end
 
@@ -35,7 +41,8 @@ task :test_database_setup do
 
   connection = PG.connect(dbname: 'makersbnb_test')
 
-  connection.exec("TRUNCATE spaces RESTART IDENTITY;")
+  connection.exec("TRUNCATE spaces,requests RESTART IDENTITY;")
+  # connection.exec("TRUNCATE requests RESTART IDENTITY;")
   connection.close
 end
 

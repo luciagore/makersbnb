@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'json'
 require_relative 'lib/spaces'
+require_relative 'lib/requests'
 # controller class
 class BNBmanager < Sinatra::Base
   enable :sessions
@@ -32,6 +33,25 @@ class BNBmanager < Sinatra::Base
     space.to_hash.to_json
   end
 
+  get '/newrequest' do
+    @space_id = params[:space_id]
+    erb :newrequests
+  end
+
+  post '/newrequest'do
+    request = Requests.create(
+      space_id: params[:space_id],
+      body: params[:body],
+      email: params[:email]
+      )
+
+    content_type :json
+    request.to_hash.to_json
+  end
+
+  get '/test_ajax' do
+    erb :test_ajax
+  end
 
   run if app_file == $0
 end
