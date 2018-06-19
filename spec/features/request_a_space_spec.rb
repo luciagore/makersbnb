@@ -9,6 +9,8 @@ feature 'request a space' do
         fill_in('email', with: 'test@email.com')
 
         click_button('Request')
+        
+        wait_for_ajax
 
         expect(page).to have_content("some message request")
         expect(page).to have_content("test@email.com")
