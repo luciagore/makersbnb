@@ -5,8 +5,8 @@ describe Requests do
 
   describe '#==' do
     it 'matching ids are identical' do
-      request = Requests.new(999, 'createrequest@yahoo.com', body: 'this is a house body for lucys house')
-      request1 = Requests.new(999, 'createrequest@yahoo.com', body: 'this is a house body for lucys house')
+      request = Requests.new(999, 'createrequest@yahoo.com', 'this is a house body for lucys house', '2018-06-10 10:27:58.348763')
+      request1 = Requests.new(999, 'createrequest@yahoo.com', 'this is a house body for lucys house', '2018-06-10 10:27:58.348763')
 
       expect(request).to eq(request1)
     end
