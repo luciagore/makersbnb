@@ -54,6 +54,7 @@ class Spaces
 
   def to_hash
     {
+      id: @id,
       name_of_space: @name_of_space,
       email: @email,
       description: @description

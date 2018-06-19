@@ -1,7 +1,9 @@
 feature 'request a space' do
     scenario 'a user can request a space using email details' do
 
-        visit('/newrequest')
+        Spaces.create(name_of_space: 'Lucys House', email: 'test@test.com', description: 'this is a house description for lucys house')
+        visit('/')
+        click_link('book now!')
 
         fill_in('body', with: 'some message request')
         fill_in('email', with: 'test@email.com')

@@ -2,10 +2,11 @@ require 'pg'
 
 class Requests
 
-  attr_reader :id, :body, :email, :timestamp
+  attr_reader :id, :body, :email, :timestamp, :space_id
 
-  def initialize(id, body, email, timestamp)
+  def initialize(id, space_id, body, email, timestamp)
     @id = id
+    @space_id = space_id
     @body = body
     @email = email
     @timestamp = timestamp
@@ -18,13 +19,14 @@ class Requests
 
 
   def self.create(request)
-    sql_query = "INSERT INTO requests (body, email)
-                 VALUES('#{request[:email]}', '#{request[:body]}')
-                 RETURNING id, email, body, timestamp"
+    sql_query = "INSERT INTO requests (space_id, body, email)
+                 VALUES('#{request[:space_id]}', '#{request[:email]}', '#{request[:body]}')
+                 RETURNING id, space_id, email, body, timestamp"
 
     result = database.exec(sql_query)
     Requests.new(
       result.first['id'],
+      result.first['space_id'],
       result.first['body'],
       result.first['email'],
       result.first['timestamp']
@@ -37,6 +39,7 @@ class Requests
     database.exec(sql_query).map { |request|
       Requests.new(
         request['id'],
+        request['space_id'],
         request['body'],
         request['email'],
         request['timestamp']
@@ -50,11 +53,12 @@ class Requests
                  WHERE id = #{id}"
 
     database.query(sql_query).map { |request|
-     Requests.new(request['id'], request['body'], request['email'], request['timestamp']) }.first
+     Requests.new(request['id'], request['space_id'], request['body'], request['email'], request['timestamp']) }.first
   end
 
   def to_hash
     {
+      space_id: @space_id,
       body: @body,
       email: @email
     }
