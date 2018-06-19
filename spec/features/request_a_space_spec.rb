@@ -1,4 +1,4 @@
-feature 'list a space' do
+feature 'request a space' do
     scenario 'a user can request a space using email details' do
 
         visit('/newrequest')
