@@ -74,6 +74,21 @@ class BNBmanager < Sinatra::Base
     user.to_hash.to_json
   end
 
+  get('/signin')do
+    erb :signin
+  end
+
+  post('/signin') do
+    user = Users.authenticate(
+      email: params[:email],
+      password: params[:password]
+    )
+    session[:id] = user.id
+
+    content_type :json
+    user.to_hash.to_json
+  end
+
   get '/test_ajax' do
     erb :test_ajax
   end
