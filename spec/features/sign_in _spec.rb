@@ -1,0 +1,15 @@
+feature 'authentication' do
+  it 'a user can sign in'do
+    Users.create(
+      email: 'test@test.com', password: 'password',
+      name: 'Harvey Dent', username: 'tswoface'
+    )
+    visit('/')
+    click_link('Sign in')
+    fill_in(:email, with 'test@test.com')
+    fill_in(:username, with 'Twoface')
+    click_button('Sign in')
+    expect(page).to have_content('Wellcome, Twoface')
+
+  end
+end
