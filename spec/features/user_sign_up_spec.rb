@@ -12,6 +12,6 @@ feature 'request a space' do
 
         click_button('Sign Up')
 
-        expect(page).to have_content("The Hulk")
+        expect(page).to have_content("You have successfully signed up, The Hulk")
     end
 end
