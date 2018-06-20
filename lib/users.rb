@@ -43,6 +43,31 @@ class Users
        }
   end
 
+  def self.find(id)
+    sql_query = "SELECT * FROM users
+                 WHERE id = #{id}"
+
+   database.query(sql_query).map { |user|
+     Users.new(
+       user['id'],
+       user['email'],
+       user['password'],
+       user['name'],
+       user['username']
+       )
+     }.first
+  end
+
+  def to_hash
+    {
+      id: @id,
+      email: @email,
+      password: @password,
+      name: @name,
+      username: @username
+    }
+  end
+
   private_class_method def self.database
     ENV['ENVIROMENT'] == 'test' \
       ? PG.connect(dbname: 'makersbnb_test') \

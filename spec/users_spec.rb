@@ -37,4 +37,11 @@ describe Users do
     end
   end
 
+  describe '.find' do
+    it 'finds a user' do
+      user = Users.create(email: 'lucy@example.com', password: 'password0', name: 'Lucy', username: 'lucygore')
+      expect(Users.find(user.id)).to eq user
+    end
+  end
+
 end
