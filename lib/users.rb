@@ -62,12 +62,14 @@ class Users
 
   def self.authenticate(email:, password:)
     sql_query = "SELECT * FROM users
-                 WHERE email = #{email}"
+                 WHERE email = #{'email'}"
     result = database.query(sql_query)
     Users.new(
       result[0]['id'],
       result[0]['email'],
-      result[0]['password']
+      result[0]['password'],
+      result[0]['name'],
+      result[0]['username']
     )
   end
 
