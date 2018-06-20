@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bcrypt'
 gem 'gmail'
 gem 'json'
 gem 'pg'
