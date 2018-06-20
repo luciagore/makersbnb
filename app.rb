@@ -67,6 +67,10 @@ class BNBmanager < Sinatra::Base
     user.to_hash.to_json
   end
 
+  get('/signin')do
+    erb :signin
+  end
+
   get '/test_ajax' do
     erb :test_ajax
   end
