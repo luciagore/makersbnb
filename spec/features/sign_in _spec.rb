@@ -12,4 +12,5 @@ feature 'authentication' do
     expect(page).to have_content("You are signed in as Twoface")
 
   end
+
 end
