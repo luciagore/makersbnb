@@ -1,0 +1,27 @@
+.sticky-top a {
+  display: block;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: .95em;
+  color: red;
+  text-transform: uppercase;
+}
+
+.sticky-top a:hover {
+  color: #093a58;
+}
+
+.jumbotron{
+  background: linear-gradient(#abcdef, transparent 60%),
+              linear-gradient(0deg, #fff, transparent),
+              #ffa949 url('/.img/head.jpg') no-repeat center;
+  background-size: cover;
+  padding: 3.2em 0;
+  margin-bottom: 60px;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1000px;
+    }
+}
