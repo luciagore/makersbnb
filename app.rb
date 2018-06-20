@@ -59,11 +59,12 @@ class BNBmanager < Sinatra::Base
     user = Users.create(
       email: params[:email],
       password: params[:password],
-      username: params[:username]
+      username: params[:username],
+      name: params[:name]
     )
 
     content_type :json
-    request.to_hash.to_json
+    user.to_hash.to_json
   end
 
   get '/test_ajax' do
