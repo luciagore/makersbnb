@@ -83,7 +83,7 @@ class BNBmanager < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:id] = user.id
+    session[:username] = user.username
 
     content_type :json
     user.to_hash.to_json
