@@ -1,4 +1,9 @@
+<% if session[:username] %>You're signed in as <%= session[:username] %>
+<% else %>
 <a href='/signup'>Sign Up</a>
+<% end %>
+
+
 <ul id = 'listings'></ul>
 
 

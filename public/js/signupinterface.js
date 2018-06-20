@@ -15,9 +15,11 @@ $(document).ready(function(){
     });
 
     xhr.done(function(signup){
-      $('#response').append(
-        "You have successfully signed up, " + signup.username
-      );
+      // $('#response').append(
+      //   "You have successfully signed up, " + signup.username
+      // );
+      window.location.replace("/");
     });
   });
 });
+
