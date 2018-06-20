@@ -4,6 +4,7 @@ require 'sinatra/flash'
 require 'json'
 require_relative 'lib/spaces'
 require_relative 'lib/requests'
+require_relative 'lib/users'
 require_relative 'lib/mailer'
 # controller class
 class BNBmanager < Sinatra::Base
