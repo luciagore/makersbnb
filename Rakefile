@@ -25,6 +25,9 @@ task :setup do
       email VARCHAR(60),
       timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT
       (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'));")
+    connection.exec("CREATE TABLE users (id SERIAL PRIMARY KEY,
+      email VARCHAR(60) UNIQUE, password VARCHAR(60),
+      name VARCHAR(60), username VARCHAR(60) UNIQUE);")
   end
 end
 
@@ -33,7 +36,7 @@ task :test_database_setup do
 
   connection = PG.connect(dbname: 'makersbnb_test')
 
-  connection.exec("TRUNCATE spaces,requests RESTART IDENTITY;")
+  connection.exec("TRUNCATE spaces,requests, users RESTART IDENTITY;")
   # connection.exec("TRUNCATE requests RESTART IDENTITY;")
   connection.close
 end
