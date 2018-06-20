@@ -4,6 +4,7 @@ require 'sinatra/flash'
 require 'json'
 require_relative 'lib/spaces'
 require_relative 'lib/requests'
+require_relative 'lib/users'
 require_relative 'lib/mailer'
 # controller class
 class BNBmanager < Sinatra::Base
@@ -11,8 +12,12 @@ class BNBmanager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    # @username
+    # @username = session[:username] if session[:username]
     erb :index
   end
+
+
 
   post '/getusers' do
     @spaces = Spaces.all
@@ -62,6 +67,8 @@ class BNBmanager < Sinatra::Base
       username: params[:username],
       name: params[:name]
     )
+    # @username = user.username
+    session[:username] = user.username
 
     content_type :json
     user.to_hash.to_json
