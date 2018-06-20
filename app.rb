@@ -57,8 +57,8 @@ class BNBmanager < Sinatra::Base
 
   post '/signup' do
     user = Users.create(
-      email: params[:email]
-      password: params[:password]
+      email: params[:email],
+      password: params[:password],
       username: params[:username]
     )
 
