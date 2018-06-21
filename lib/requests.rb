@@ -2,14 +2,15 @@ require 'pg'
 
 class Requests
 
-  attr_reader :id, :body, :email, :timestamp, :space_id
+  attr_reader :id, :body, :email, :timestamp, :space_id, :user_id
 
-  def initialize(id, space_id, body, email, timestamp)
+  def initialize(id, space_id, body, email, timestamp, user_id)
     @id = id
     @space_id = space_id
     @body = body
     @email = email
     @timestamp = timestamp
+    @user_id = user_id
   end
 
 
@@ -19,9 +20,9 @@ class Requests
 
 
   def self.create(request)
-    sql_query = "INSERT INTO requests (space_id, body, email)
-                 VALUES('#{request[:space_id]}','#{request[:body]}','#{request[:email]}')
-                 RETURNING id, space_id, body, email, timestamp"
+    sql_query = "INSERT INTO requests (space_id, body, email, user_id)
+                 VALUES('#{request[:space_id]}','#{request[:body]}','#{request[:email]}', '#{request[:user_id]}')
+                 RETURNING id, space_id, body, email, timestamp, user_id"
 
     result = database.exec(sql_query)
     request = Requests.new(
@@ -29,7 +30,8 @@ class Requests
       result.first['space_id'],
       result.first['body'],
       result.first['email'],
-      result.first['timestamp']
+      result.first['timestamp'],
+      result.first['user_id']
     )
     space = Spaces.find(request.space_id)
     Mailer.sendmail({about: space.name_of_space, message: request.body, from: request.email, to: space.email})
@@ -45,7 +47,8 @@ class Requests
         request['space_id'],
         request['body'],
         request['email'],
-        request['timestamp']
+        request['timestamp'],
+        request['user_id']
         )
        }
   end
@@ -56,14 +59,23 @@ class Requests
                  WHERE id = #{id}"
 
     database.query(sql_query).map { |request|
-     Requests.new(request['id'], request['space_id'], request['body'], request['email'], request['timestamp']) }.first
+     Requests.new(
+       request['id'],
+       request['space_id'],
+       request['body'],
+       request['email'],
+       request['timestamp'],
+       request['user_id']
+      )
+    }.first
   end
 
   def to_hash
     {
       space_id: @space_id,
       body: @body,
-      email: @email
+      email: @email,
+      user_id: @user_id
     }
   end
 

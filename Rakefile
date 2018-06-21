@@ -15,19 +15,26 @@ task :setup do
     connection = PG.connect
     connection.exec("CREATE DATABASE #{database};")
     connection = PG.connect(dbname: database)
+    
+    connection.exec("CREATE TABLE users (id SERIAL PRIMARY KEY,
+      email VARCHAR(60) UNIQUE, password VARCHAR(60),
+      name VARCHAR(60), username VARCHAR(60) UNIQUE);")
+
     connection.exec("CREATE TABLE spaces(id SERIAL PRIMARY KEY,
       name_of_space VARCHAR(30),
       email VARCHAR(60),
-      description VARCHAR(1000));")
+      description VARCHAR(1000),
+      price_per_night FLOAT,
+      user_id INTEGER REFERENCES users (id));")
+
     connection.exec("CREATE TABLE requests(id SERIAL PRIMARY KEY,
       space_id INTEGER REFERENCES spaces (id),
       body VARCHAR(1000),
       email VARCHAR(60),
       timestamp TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT
-      (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'));")
-    connection.exec("CREATE TABLE users (id SERIAL PRIMARY KEY,
-      email VARCHAR(60) UNIQUE, password VARCHAR(60),
-      name VARCHAR(60), username VARCHAR(60) UNIQUE);")
+      (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'),
+      user_id INTEGER REFERENCES users (id));")
+
   end
 end
 

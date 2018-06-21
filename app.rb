@@ -9,10 +9,10 @@ require_relative 'lib/mailer'
 # controller class
 class BNBmanager < Sinatra::Base
   enable :sessions
-  enable :static
   register Sinatra::Flash
 
   get '/' do
+    @user = Users.find(session[:id]) if session[:id]
     erb :index
   end
 
@@ -24,6 +24,7 @@ class BNBmanager < Sinatra::Base
   end
 
   get '/new' do
+    @user_id = Users.find(session[:id]).id
     erb :newspace
   end
 
@@ -31,14 +32,18 @@ class BNBmanager < Sinatra::Base
     space = Spaces.create(
       name_of_space: params[:name_of_space],
       email: params[:email],
-      description: params[:description]
+      description: params[:description],
+      price_per_night: params[:price_per_night],
+      user_id: params[:user_id]
       )
     content_type :json
     space.to_hash.to_json
   end
 
   get '/newrequest' do
-    @space_id = params[:space_id]
+    @space_id = params[:space_id].to_i
+    p @space_id
+    @user_id = Users.find(session[:id]).id
     erb :newrequests
   end
 
@@ -46,7 +51,8 @@ class BNBmanager < Sinatra::Base
     request = Requests.create(
       space_id: params[:space_id],
       body: params[:body],
-      email: params[:email]
+      email: params[:email],
+      user_id: params[:user_id]
       )
 
     content_type :json
@@ -65,7 +71,7 @@ class BNBmanager < Sinatra::Base
       name: params[:name]
     )
 
-    session[:username] = user.username
+    session[:id] = user.id
 
     content_type :json
     user.to_hash.to_json
@@ -80,15 +86,19 @@ class BNBmanager < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:username] = user.username
+    if user
+      session[:id] = user.id
+      content_type :json
+      user.to_hash.to_json
+    else
+      "error"
+    end
 
-    content_type :json
-    user.to_hash.to_json
   end
 
 
   post('/signout') do
-    session[:username] = nil
+    session[:id] = nil
   end
 
   get '/test_ajax' do
