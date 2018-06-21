@@ -8,6 +8,7 @@ require 'selenium-webdriver'
 require 'rspec'
 require 'rake'
 require_relative './support/wait_for_ajax'
+require_relative './support/log_in'
 
 Rake.application.load_rakefile
 
