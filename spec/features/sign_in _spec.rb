@@ -14,6 +14,20 @@ feature 'authentication' do
 
   end
 
+  it 'gives an error if the user does not exist' do
+    Users.create(
+      email: 'test@test.com', password: 'password',
+      name: 'Harvey Dent', username: 'Twoface'
+    )
+    visit('/')
+    click_link('Sign In')
+    fill_in('email', with: 'tester@test.com')
+    fill_in('password', with: 'password')
+    click_button('submit')
+
+    expect(page).to have_content("Incorrect login details.")
+
+  end
   it 'a user can sign out' do
     Users.create(
       email: 'test@test.com', password: 'password',

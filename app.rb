@@ -9,10 +9,10 @@ require_relative 'lib/mailer'
 # controller class
 class BNBmanager < Sinatra::Base
   enable :sessions
-  enable :static
   register Sinatra::Flash
 
   get '/' do
+    @user = Users.find(session[:id]) if session[:id]
     erb :index
   end
 
@@ -65,7 +65,7 @@ class BNBmanager < Sinatra::Base
       name: params[:name]
     )
 
-    session[:username] = user.username
+    session[:id] = user.id
 
     content_type :json
     user.to_hash.to_json
@@ -80,15 +80,19 @@ class BNBmanager < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:username] = user.username
+    if user
+      session[:id] = user.id
+      content_type :json
+      user.to_hash.to_json
+    else
+      "error"
+    end
 
-    content_type :json
-    user.to_hash.to_json
   end
 
 
   post('/signout') do
-    session[:username] = nil
+    session[:id] = nil
   end
 
   get '/test_ajax' do

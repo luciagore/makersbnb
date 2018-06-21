@@ -1,6 +1,6 @@
 "use strict";
 $(document).ready(function(){
-  $('#submit').one('click', function(){
+  $('#submit').on('click', function(){
     let email = $('#email').val();
     let password = $('#password').val();
 
@@ -10,8 +10,12 @@ $(document).ready(function(){
       password: password,
     });
 
-    xhr.done(function(signup){
+    xhr.done(function(signin){
+      if(signin == 'error'){
+        $('#response').text('Incorrect login details. Try again');
+      } else {
       window.location.replace("/");
+    }
     });
   });
 });
