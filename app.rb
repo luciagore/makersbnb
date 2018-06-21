@@ -24,6 +24,7 @@ class BNBmanager < Sinatra::Base
   end
 
   get '/new' do
+    @user_id = Users.find(session[:id])
     erb :newspace
   end
 
