@@ -8,7 +8,8 @@ $(document).ready(function() {
       let name_of_space = $('#name_of_space').val();
       let email = $('#email').val();
       let description = $('#description').val();
-      let price = $('#price').val();
+      let price = parseFloat($('#price').val());
+      console.log(price)
       let user_id = $('#user_id').val();
 
       let xhr = $.post('/new',
@@ -16,12 +17,12 @@ $(document).ready(function() {
         name_of_space: name_of_space,
         email: email,
         description: description,
-        price: price,
+        price_per_night: price,
         user_id: user_id
       });
 
       xhr.done(function(response){
-        $('#response').append("Made a new listing:<br>email: " + response.email + "<br>name of space: " + response.name_of_space + "<br>price: " + response.price + "<br>description: " +response.description);
+        $('#response').append("Made a new listing:<br>email: " + response.email + "<br>name of space: " + response.name_of_space + "<br>price: " + response.price_per_night + "<br>description: " +response.description);
       });
     });
 

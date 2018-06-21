@@ -13,7 +13,7 @@
   </head>
 
   <body>
-      <% if session[:username] %>You are signed in as <%= session[:username] %>
+      <% if session[:id] %>You are signed in as <%= @user.username %>
       <a href id="signout">Sign Out</a>
       <% else %>
       <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="top-nav">

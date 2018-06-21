@@ -1,10 +1,10 @@
 feature 'request a space' do
     scenario 'a user can request a space using email details' do
 
-        user = Users.create(email: 'test@example.com', password: 'password123', name: 'Test name', username: 'testusername')
+        user = Users.create(email: 'lucy@example.com', password: 'password0', name: 'Lucy', username: 'lucygore')
         user_id = user.id
 
-        Spaces.create(name_of_space: 'Lucys House', email: 'test@test.com', description: 'this is a house description for lucys house', price_per_night: 40.00, user_id: user_id)
+        Spaces.create(name_of_space: 'Lucys House', email: 'lucy@example.com', description: 'this is a house description for lucys house', price_per_night: 40.00, user_id: user_id)
         visit('/')
         click_link('book now!')
 
