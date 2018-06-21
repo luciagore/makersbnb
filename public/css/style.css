@@ -1,4 +1,4 @@
-.sticky-top a {
+.navbar a {
   display: block;
   text-align: center;
   padding: 10px 15px;
@@ -7,7 +7,7 @@
   text-transform: uppercase;
 }
 
-.sticky-top a:hover {
+.navbar a:hover {
   color: #093a58;
 }
 
