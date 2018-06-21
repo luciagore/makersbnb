@@ -10,6 +10,6 @@ feature 'signup' do
 
         click_button('submit')
 
-        expect(page).to have_content("You are signed in as lucygore")
+        expect(page).to have_content("LUCYGORE")
     end
 end

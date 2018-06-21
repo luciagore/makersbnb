@@ -18,8 +18,8 @@
             <a class="nav-link" href="#">The Posh Couch<span class="sr-only">(current)</span></a>
           </li>
           <% if session[:id] %>
-          <a href id="postspace">Post</a>
-          <a href id="requestspace">Request</a>
+          <a href="/new" id="postspace">Post</a>
+          <a href="/newrequest" id="requestspace">Request</a>
           <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
           <% else %>
           <li class="nav-item">
