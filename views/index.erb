@@ -1,15 +1,3 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Varela+Round'
-      rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <title>The Posh Couch</title>
-  </head>
-
   <body>
 
       <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="top-nav">
@@ -18,12 +6,11 @@
             <a class="nav-link" href="#">The Posh Couch<span class="sr-only">(current)</span></a>
           </li>
           <% if session[:id] %>
-          <a href="/new" id="postspace">Post</a>
-          <a href="/newrequest" id="requestspace">Request</a>
+          <a href="/new" id="postspace">List Space</a>
           <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
           <% else %>
           <li class="nav-item">
-            <a class="nav-link" href='/signin'>Sign In</a>
+            <a href = "#"class="nav-link" data-toggle="modal" data-target="#logInModal">Sign In</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='/signup'>Sign Up</a>
@@ -31,6 +18,45 @@
           <% end %>
         </ul>
     </nav>
+<!-- TEST -->
+
+<div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form class="form-signin" style = "margin: 10px;">
+              <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+              <div id='response'></div>
+              <label for="inputEmail" class="sr-only">Email address</label>
+              <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="password" class="form-control" placeholder="Password" required>
+        </form>
+
+        <!--
+        <div id='response'></div>
+        <label for = "email">Email:</label>
+        <input name ="email" id="email" type="text"><br>
+        <label for = "password">Password:</label>
+        <input name="password" id="password" type="password"><br> -->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id = "submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <div class="jumbotron text-center">
     		<h1 class="headline">The Posh Couch</h1>
@@ -99,3 +125,4 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/indexinterface.js"></script>
 <script type="text/javascript" src="js/signoutinterface.js"></script>
+<script type="text/javascript" src="js/signininterface.js"></script>

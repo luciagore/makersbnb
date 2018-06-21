@@ -6,6 +6,7 @@ feature 'authentication' do
     )
     visit('/')
     click_link('Sign In')
+    wait_for_ajax
     fill_in('email', with: 'lucy@example.com')
     fill_in('password', with: 'password0')
     click_button('submit')
