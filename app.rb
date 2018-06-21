@@ -88,7 +88,6 @@ class BNBmanager < Sinatra::Base
 
   post('/signout') do
     session[:username] = nil
-    # session.clear
   end
 
   get '/test_ajax' do
