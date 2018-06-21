@@ -80,10 +80,14 @@ class BNBmanager < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    session[:id] = user.id
+    if user
+      session[:id] = user.id
+      content_type :json
+      user.to_hash.to_json
+    else
+      "error"
+    end
 
-    content_type :json
-    user.to_hash.to_json
   end
 
 
