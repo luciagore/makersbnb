@@ -32,7 +32,9 @@ class BNBmanager < Sinatra::Base
     space = Spaces.create(
       name_of_space: params[:name_of_space],
       email: params[:email],
-      description: params[:description]
+      description: params[:description],
+      price_per_night: params[:price_per_night],
+      user_id: params[:user_id]
       )
     content_type :json
     space.to_hash.to_json
