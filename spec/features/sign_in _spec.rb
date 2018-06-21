@@ -10,7 +10,7 @@ feature 'authentication' do
     fill_in('password', with: 'password0')
     click_button('submit')
 
-    expect(page).to have_content("You are signed in as lucygore")
+    expect(page).to have_content("LUCYGORE")
 
   end
 

@@ -11,24 +11,26 @@
   </head>
 
   <body>
-      <% if session[:id] %>You are signed in as <%= @user.username %>
-      <a href id="signout">Sign Out</a>
-      <% else %>
+
       <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="top-nav">
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="#">The Posh Couch<span class="sr-only">(current)</span></a>
           </li>
+          <% if session[:id] %>
+          <a href="/new" id="postspace">Post</a>
+          <a href="/newrequest" id="requestspace">Request</a>
+          <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
+          <% else %>
           <li class="nav-item">
             <a class="nav-link" href='/signin'>Sign In</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='/signup'>Sign Up</a>
           </li>
+          <% end %>
         </ul>
     </nav>
-      <% end %>
-
 
       <div class="jumbotron text-center">
     		<h1 class="headline">The Posh Couch</h1>
@@ -39,7 +41,7 @@
         <p>Some awesome cursive quote from a review we got in a lovely shade of gray.</p>
       </div>
 
-      <div class="container-fluid">
+      <div class="container">
         <hr>
         <div class="row">
           <div class="col-8">
@@ -47,13 +49,29 @@
               <h5>Great locations</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 Ut enim ad minim veniam, quis nostrud
+                 Ut enim ad minim veniam, quis nostrud.
+              </p>
+              <p>
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
               </p>
               <div class="border">
                 <h5>Feels just like home</h3>
                 <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo
                   consequat. Duis aute irure dolor in reprehenderit in voluptate
                   velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <p>
+                  Ac turpis egestas maecenas pharetra convallis. Ac tincidunt
+                  vitae semper quis lectus. Condimentum lacinia quis vel eros.
+                  Leo integer malesuada nunc vel. Duis aute irure dolor in
+                  reprehenderit in voluptate velit esse cillum dolore eu
+                  fugiat nulla pariatur.
+                </p>
                 </div>
               </span>
             </div>
@@ -61,7 +79,7 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="/images/vertical.jpg" alt="awesome fireplace">
+            <img src="/images/vertical.jpg" alt="awesome fireplace" height="400px">
           </div>
         </div>
       </div>
