@@ -60,9 +60,9 @@ class Users
      }.first
   end
 
-  def self.authenticate(email:, password:)
+  def self.authenticate(details)
     sql_query = "SELECT * FROM users
-                 WHERE email = #{'email'}"
+                 WHERE email = '#{details[:email]}'"
     result = database.query(sql_query)
     Users.new(
       result[0]['id'],
@@ -72,6 +72,20 @@ class Users
       result[0]['username']
     )
   end
+  # def self.authenticate(username, password)
+  #   result = DatabaseConnection.query(
+  #     "SELECT * FROM users WHERE username = '#{username}'"
+  #   )
+  #   return unless result.any?
+  #   return unless BCrypt::Password.new(result[0]['password']) == password
+  #   User.new(
+  #     result[0]['id'],
+  #     result[0]['email'],
+  #     result[0]['username'],
+  #     result[0]['name'],
+  #     result[0]['password'],
+  #     )
+  # end
 
   def to_hash
     {
