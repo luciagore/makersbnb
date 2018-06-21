@@ -11,7 +11,7 @@ $(document).ready(function() {
       let price = parseFloat($('#price').val());
       console.log(price)
       let user_id = $('#user_id').val();
-
+      console.log(user_id)
       let xhr = $.post('/new',
       {
         name_of_space: name_of_space,

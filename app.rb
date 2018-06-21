@@ -41,7 +41,8 @@ class BNBmanager < Sinatra::Base
   end
 
   get '/newrequest' do
-    @space_id = params[:space_id]
+    @space_id = params[:space_id].to_i
+    p @space_id
     @user_id = Users.find(session[:id]).id
     erb :newrequests
   end
