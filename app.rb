@@ -9,6 +9,7 @@ require_relative 'lib/mailer'
 # controller class
 class BNBmanager < Sinatra::Base
   enable :sessions
+  enable :static
   register Sinatra::Flash
 
   get '/' do
