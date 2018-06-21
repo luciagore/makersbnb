@@ -8,8 +8,8 @@ feature 'authentication' do
     click_link('Sign In')
     wait_for_ajax
     fill_in('emailLogIN', with: 'lucy@example.com')
-    fill_in('password', with: 'password0')
-    click_button('submit')
+    fill_in('passwordLogIn', with: 'password0')
+    click_button('submitLogIN')
 
     expect(page).to have_content("LUCYGORE")
 
@@ -23,8 +23,8 @@ feature 'authentication' do
     visit('/')
     click_link('Sign In')
     fill_in('emailLogIN', with: 'lucyg@example.com')
-    fill_in('password', with: 'password0')
-    click_button('submit')
+    fill_in('passwordLogIn', with: 'password0')
+    click_button('submitLogIN')
 
     expect(page).to have_content("Incorrect login details.")
 
@@ -37,8 +37,8 @@ feature 'authentication' do
     visit('/')
     click_link('Sign In')
     fill_in('emailLogIN', with: 'lucy@example.com')
-    fill_in('password', with: 'password0')
-    click_button('submit')
+    fill_in('passwordLogIn', with: 'password0')
+    click_button('submitLogIN')
 
     click_link('Sign Out')
 

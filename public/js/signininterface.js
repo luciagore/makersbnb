@@ -2,7 +2,7 @@
 $(document).ready(function(){
   $('#submitLogIN').on('click', function(){
     let email = $('#emailLogIN').val();
-    let password = $('#password').val();
+    let password = $('#passwordLogIn').val();
 
     let xhr = $.post('/signin',
     {
