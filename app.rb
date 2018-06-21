@@ -85,6 +85,12 @@ class BNBmanager < Sinatra::Base
     user.to_hash.to_json
   end
 
+
+  post('/signout') do
+    session[:username] = nil
+    # session.clear
+  end
+
   get '/test_ajax' do
     erb :test_ajax
   end

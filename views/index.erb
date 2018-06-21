@@ -1,5 +1,6 @@
 
 <% if session[:username] %>You are signed in as <%= session[:username] %>
+<a href id = "signout">Sign Out</a>
 <% else %>
 <a href='/signin'>Sign In</a>
 <a href='/signup'>Sign Up</a>
@@ -12,3 +13,4 @@
 
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/indexinterface.js"></script>
+<script type="text/javascript" src="js/signoutinterface.js"></script>
