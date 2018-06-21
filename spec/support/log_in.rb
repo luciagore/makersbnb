@@ -1,8 +1,11 @@
 
 def log_in
-  Users.create(email: 'lucy@example.com', password: 'password0', name: 'Lucy', username: 'lucygore')
-  visit('/signin')
-  fill_in('email', with: 'lucy@example.com')
+  visit('/signup')
+
+  fill_in('email', with: 'example1@example.com')
   fill_in('password', with: 'password0')
+  fill_in('name', with: 'example')
+  fill_in('username', with: 'example')
   click_button('submit')
+
   end
