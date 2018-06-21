@@ -47,7 +47,7 @@ class Users
 
   def self.find(id)
     sql_query = "SELECT * FROM users
-                 WHERE id = #{id}"
+                 WHERE id = '#{id}'"
 
    database.query(sql_query).map { |user|
      Users.new(
