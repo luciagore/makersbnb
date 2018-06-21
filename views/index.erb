@@ -1,4 +1,7 @@
   <body>
+    <% if @user %>
+      <input id = 'signedin' type = "hidden" value="yes">
+      <% end %>
 
       <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="top-nav">
         <ul class="navbar-nav">
