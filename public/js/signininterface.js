@@ -1,7 +1,7 @@
 "use strict";
 $(document).ready(function(){
-  $('#submit').on('click', function(){
-    let email = $('#email').val();
+  $('#submitLogIN').on('click', function(){
+    let email = $('#emailLogIN').val();
     let password = $('#password').val();
 
     let xhr = $.post('/signin',
@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     xhr.done(function(signin){
       if(signin == 'error'){
-        $('#response').text('Incorrect login details. Try again');
+        $('#response2').text('Incorrect login details. Try again');
       } else {
       window.location.replace("/");
     }

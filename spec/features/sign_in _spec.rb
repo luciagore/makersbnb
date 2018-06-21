@@ -7,7 +7,7 @@ feature 'authentication' do
     visit('/')
     click_link('Sign In')
     wait_for_ajax
-    fill_in('email', with: 'lucy@example.com')
+    fill_in('emailLogIN', with: 'lucy@example.com')
     fill_in('password', with: 'password0')
     click_button('submit')
 
@@ -22,7 +22,7 @@ feature 'authentication' do
     )
     visit('/')
     click_link('Sign In')
-    fill_in('email', with: 'lucyg@example.com')
+    fill_in('emailLogIN', with: 'lucyg@example.com')
     fill_in('password', with: 'password0')
     click_button('submit')
 
@@ -36,7 +36,7 @@ feature 'authentication' do
     )
     visit('/')
     click_link('Sign In')
-    fill_in('email', with: 'lucy@example.com')
+    fill_in('emailLogIN', with: 'lucy@example.com')
     fill_in('password', with: 'password0')
     click_button('submit')
 
