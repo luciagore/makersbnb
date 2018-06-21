@@ -42,6 +42,7 @@ class BNBmanager < Sinatra::Base
 
   get '/newrequest' do
     @space_id = params[:space_id]
+    @user_id = Users.find(session[:id])
     erb :newrequests
   end
 
@@ -49,7 +50,8 @@ class BNBmanager < Sinatra::Base
     request = Requests.create(
       space_id: params[:space_id],
       body: params[:body],
-      email: params[:email]
+      email: params[:email],
+      user_id: params[:user_id]
       )
 
     content_type :json
