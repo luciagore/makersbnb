@@ -13,6 +13,5 @@ feature 'list a space' do
     expect(page).to have_content("Lucys house")
     expect(page).to have_content('Home for rent!')
     expect(page).to have_content('lucy@example.com')
-    expect(page).to have_content('40')
   end
 end
