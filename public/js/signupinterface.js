@@ -1,10 +1,10 @@
 "use strict";
 $(document).ready(function(){
-  $('#submit').one('click', function(){
-    let email = $('#email').val();
-    let password = $('#password').val();
-    let name = $('#name').val();
-    let username = $('#username').val();
+  $('#submitSignUp').one('click', function(){
+    let email = $('#emailSignUp').val();
+    let password = $('#passwordSignUp').val();
+    let name = $('#nameSignUp').val();
+    let username = $('#userNameSignUp').val();
 
     let xhr = $.post('/signup',
     {
