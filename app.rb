@@ -33,11 +33,18 @@ class BNBmanager < Sinatra::Base
       name_of_space: params[:name_of_space],
       email: params[:email],
       description: params[:description],
-      price_per_night: params[:price_per_night],
-      user_id: params[:user_id]
+      price_per_night: params[:price_per_night].to_f,
+      user_id: params[:user_id].to_i
       )
+      @filename = params[:file][:filename]
+      file = params[:file][:tempfile]
+
+      File.open("./public/userimages/#{params[:user_id]+@filename}", 'wb') do |f|
+        f.write(file.read)
+      end
     content_type :json
     space.to_hash.to_json
+    redirect '/'
   end
 
   get '/newrequest' do

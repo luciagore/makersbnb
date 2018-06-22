@@ -15,7 +15,7 @@ task :setup do
     connection = PG.connect
     connection.exec("CREATE DATABASE #{database};")
     connection = PG.connect(dbname: database)
-    
+
     connection.exec("CREATE TABLE users (id SERIAL PRIMARY KEY,
       email VARCHAR(60) UNIQUE, password VARCHAR(60),
       name VARCHAR(60), username VARCHAR(60) UNIQUE);")

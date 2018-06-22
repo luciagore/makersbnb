@@ -2,7 +2,8 @@ feature 'list a space' do
   scenario 'user can list a space' do
     log_in
 
-    visit('/new')
+    visit('/')
+    click_link('List Space')
 
     fill_in('name_of_space', with: "Lucys house")
     fill_in('email', with: 'lucy@example.com')
