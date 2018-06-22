@@ -22,7 +22,7 @@ $(document).ready(function() {
       });
 
       xhr.done(function(response){
-        $('#response').append("Made a new listing:<br>email: " + response.email + "<br>name of space: " + response.name_of_space + "<br>price: " + response.price_per_night + "<br>description: " +response.description);
+        window.location.replace('/');
       });
     });
 
