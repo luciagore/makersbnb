@@ -29,15 +29,24 @@ class BNBmanager < Sinatra::Base
   end
 
   post '/new' do
+    @filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+    @savefilename = "#{params[:user_id]+@filename}"
+    File.open("./public/userimages/#{@savefilename}", 'wb') do |f|
+      f.write(file.read)
+    end
     space = Spaces.create(
       name_of_space: params[:name_of_space],
       email: params[:email],
       description: params[:description],
-      price_per_night: params[:price_per_night],
-      user_id: params[:user_id]
+      price_per_night: params[:price_per_night].to_f,
+      image_name: @savefilename,
+      user_id: params[:user_id].to_i
       )
+
     content_type :json
     space.to_hash.to_json
+    redirect '/'
   end
 
   get '/newrequest' do

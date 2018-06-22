@@ -2,15 +2,16 @@ require 'pg'
 
 class Spaces
 
-  attr_reader :id, :name_of_space, :description, :email, :price_per_night, :user_id
+  attr_reader :id, :name_of_space, :description, :email, :price_per_night, :user_id, :image_name
 
-  def initialize(id, name_of_space, email, description, price_per_night, user_id)
+  def initialize(id, name_of_space, email, description, price_per_night, image_name, user_id)
     @id = id
     @name_of_space = name_of_space
     @email = email
     @description = description
     @price_per_night = price_per_night
     @user_id = user_id
+    @image_name = image_name
   end
 
 
@@ -20,10 +21,10 @@ class Spaces
 
 
   def self.create(create)
-    sql_query = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+    sql_query = "INSERT INTO spaces (name_of_space, email, description, price_per_night, image_name, user_id)
                  VALUES('#{create[:name_of_space]}', '#{create[:email]}',
-                   '#{create[:description]}', '#{create[:price_per_night]}', '#{create[:user_id]}')
-                 RETURNING id, name_of_space, email, description, price_per_night, user_id"
+                   '#{create[:description]}', '#{create[:price_per_night]}', '#{create[:image_name]}', '#{create[:user_id]}')
+                 RETURNING id, name_of_space, email, description, price_per_night, image_name, user_id"
 
     result = database.exec(sql_query)
     Spaces.new(
@@ -32,6 +33,7 @@ class Spaces
       result.first['email'],
       result.first['description'],
       result.first['price_per_night'],
+      result.first['image_name'],
       result.first['user_id']
     )
   end
@@ -46,6 +48,7 @@ class Spaces
         space['email'],
         space['description'],
         space['price_per_night'],
+        space['image_name'],
         space['user_id']
         )
        }
@@ -57,7 +60,7 @@ class Spaces
 
     database.query(sql_query).map { |space|
      Spaces.new(space['id'], space['name_of_space'], space['email'],
-       space['description'], space['price_per_night'], space['user_id']) }.first
+       space['description'], space['price_per_night'], space['image_name'], space['user_id']) }.first
   end
 
   def to_hash
@@ -67,6 +70,7 @@ class Spaces
       email: @email,
       description: @description,
       price_per_night: @price_per_night,
+      image_name: @image_name,
       user_id: @user_id
     }
   end
