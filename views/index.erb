@@ -1,4 +1,5 @@
   <body>
+    <div>
     <% if @user %>
       <input id = 'signedin' type = "hidden" value="yes">
       <input name='user_id' id='user_id' type="hidden" value = '<%= @user.id %>'>
@@ -141,9 +142,18 @@
       <!-- END CARD CONTAINER -->
 
     </div>
-    <footer class="fixed-bottom text-center" id="bottom-nav">
-      <span>&copy;2018 Make your dreams come true with Posh Couch.</span>
+    <div>
+    <footer id="myFooter">
+        <div class="container">
+        <p class="footer-copyright">© 2018 Make your dreams come true with Posh Couch</p>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icons"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="social-icons"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="social-icons"><i class="fa fa-twitter"></i></a>
+        </div>
     </footer>
+  </div>
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/popper.js"></script>
