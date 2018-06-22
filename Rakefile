@@ -15,7 +15,7 @@ task :setup do
     connection = PG.connect
     connection.exec("CREATE DATABASE #{database};")
     connection = PG.connect(dbname: database)
-    
+
     connection.exec("CREATE TABLE users (id SERIAL PRIMARY KEY,
       email VARCHAR(60) UNIQUE, password VARCHAR(60),
       name VARCHAR(60), username VARCHAR(60) UNIQUE);")
@@ -46,6 +46,44 @@ task :test_database_setup do
   connection.exec("TRUNCATE spaces,requests, users RESTART IDENTITY;")
   # connection.exec("TRUNCATE requests RESTART IDENTITY;")
   connection.close
+end
+
+task :test_dummy do
+
+  connection = PG.connect(dbname: 'makersbnb')
+  sql_query = "INSERT INTO users (email, password, name, username)
+               VALUES('lucy@example.com', 'password0', 'Lucy', 'lucygore')"
+  connection.exec(sql_query)
+
+  sql_query1 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+               VALUES('Lucy''s space',
+                      'lucy@example.com',
+                      'description of Lucy space',
+                      '50',
+                      '1')"
+  connection.exec(sql_query1)
+  sql_query2 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+               VALUES('Ben''s space',
+                      'lucy@example.com',
+                      'description of Ben space',
+                      '40',
+                      '1')"
+  connection.exec(sql_query2)
+  sql_query3 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+               VALUES('Laura''s space',
+                      'lucy@example.com',
+                      'description of Laura space',
+                      '30',
+                      '1')"
+  connection.exec(sql_query3)
+  sql_query4 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+               VALUES('Khie''s space',
+                      'lucy@example.com',
+                      'description of Khie space',
+                      '20',
+                      '1')"
+  connection.exec(sql_query4)
+
 end
 
 task :teardown do
