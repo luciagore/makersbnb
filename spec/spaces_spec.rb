@@ -7,8 +7,8 @@ describe Spaces do
     it 'matching ids are identical' do
       user = Users.create(email: 'test@example.com', password: 'password123', name: 'Test name', username: 'testusername')
       user_id = user.id
-      space = Spaces.new(999, 'Lucys House','test@test.com', 'this is a house description for lucys house', 40.00, user_id)
-      space1 = Spaces.new(999, 'Lucys House','test@test.com', 'this is a house description for lucys house', 40.00, user_id)
+      space = Spaces.new(999, 'Lucys House','test@test.com', 'this is a house description for lucys house', 40.00, "hi",user_id)
+      space1 = Spaces.new(999, 'Lucys House','test@test.com', 'this is a house description for lucys house', 40.00, "hi", user_id)
 
       expect(space).to eq(space1)
     end

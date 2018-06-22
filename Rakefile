@@ -25,6 +25,7 @@ task :setup do
       email VARCHAR(60),
       description VARCHAR(1000),
       price_per_night FLOAT,
+      image_name VARCHAR(40),
       user_id INTEGER REFERENCES users (id));")
 
     connection.exec("CREATE TABLE requests(id SERIAL PRIMARY KEY,
