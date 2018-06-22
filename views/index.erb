@@ -9,20 +9,55 @@
             <a class="nav-link" href="#">The Posh Couch<span class="sr-only">(current)</span></a>
           </li>
           <% if session[:id] %>
-          <a href="/new" id="postspace">List Space</a>
-          <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#listSpaceModal" id="postspace">List Space</a>
+            <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
           <% else %>
-          <li class="nav-item">
-            <a href = "#"class="nav-link" data-toggle="modal" data-target="#logInModal">Sign In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href='/signup'>Sign Up</a>
-          </li>
+            <li class="nav-item">
+              <a href = "#"class="nav-link" data-toggle="modal" data-target="#logInModal">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href='/signup'>Sign Up</a>
+            </li>
           <% end %>
         </ul>
     </nav>
-<!-- TEST -->
 
+<!-- LIST SPACE form -->
+<div class="modal fade" id="listSpaceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">List Space</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+
+          <form class="form-signin" style = "margin: 10px;">
+              <h1 class="h3 mb-3 font-weight-normal text-center">Please list your space</h1>
+              <div id='response'></div>
+              <label for="inputNameOfSpace" class="sr-only">Property name</label>
+              <input type="name_of_space" id="name_of_space" class="form-control" placeholder="Property name" required autofocus>
+              <label for="inputEmail" class="sr-only">Email address</label>
+              <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+              <label for="inputPricePerNight" class="sr-only">Price per night (£)</label>
+              <input type="price" id="price" class="form-control" placeholder="Price per night" required autofocus>
+              <label for="inputDescription" class="sr-only">Description</label>
+              <input type="description" id="description" class="form-control" placeholder="Description" required autofocus>
+              <input name='user_id' id='user_id' type="hidden" value = '<%= @user_id %>'>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id = "submit" class="btn btn-primary">List my space</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- LOG IN form -->
 <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -36,25 +71,17 @@
 
         <form class="form-signin" style = "margin: 10px;">
               <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
-              <div id='response'></div>
+              <div id='response2'></div>
               <label for="inputEmail" class="sr-only">Email address</label>
-              <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+              <input type="email" id="emailLogIN" class="form-control" placeholder="Email address" required autofocus>
               <label for="inputPassword" class="sr-only">Password</label>
-              <input type="password" id="password" class="form-control" placeholder="Password" required>
+              <input type="password" id="passwordLogIn" class="form-control" placeholder="Password" required>
         </form>
-
-        <!--
-        <div id='response'></div>
-        <label for = "email">Email:</label>
-        <input name ="email" id="email" type="text"><br>
-        <label for = "password">Password:</label>
-        <input name="password" id="password" type="password"><br> -->
-
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id = "submit" class="btn btn-primary">Submit</button>
+        <button type="button" id = "submitLogIN" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -129,3 +156,4 @@
     <script type="text/javascript" src="js/indexinterface.js"></script>
 <script type="text/javascript" src="js/signoutinterface.js"></script>
 <script type="text/javascript" src="js/signininterface.js"></script>
+<script type="text/javascript" src="js/newspaceinterface.js"></script>
