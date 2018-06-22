@@ -2,10 +2,10 @@
 $(document).ready(function() {
 
     $('#submit').on('click', function(){
-      let body = $('#body').val();
-      let email = $('#email').val();
-      let space_id = Number($('#space_id').val());
-      let user_id = Number($('#user_id').val());
+      let body = $('#inputMessage').val();
+      let email = $('#inputEmail').val();
+      let space_id = Number($('#space_idRequest').val());
+      let user_id = Number($('#user_idRequest').val());
 
 
       let xhr = $.post('/newrequest',
@@ -17,7 +17,7 @@ $(document).ready(function() {
       });
 
       xhr.done(function(response){
-        $('#response').append(
+        $('#response4').append(
           "Made a new request:<br>email: " + response.email +
           "<br>Message body: " + response.body
         );

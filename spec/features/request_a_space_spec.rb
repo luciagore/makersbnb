@@ -8,10 +8,10 @@ feature 'request a space' do
         visit('/')
         click_link('book now!')
 
-        fill_in('body', with: 'some message request')
-        fill_in('email', with: 'example1@example.com')
+        fill_in('inputMessage', with: 'some message request')
+        fill_in('inputEmail', with: 'example1@example.com')
 
-        click_button('Request')
+        click_button('submitRequest')
 
         expect(page).to have_content("some message request")
         expect(page).to have_content("example1@example.com")
