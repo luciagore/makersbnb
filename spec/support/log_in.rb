@@ -1,11 +1,12 @@
 
 def log_in
-  visit('/signup')
+  visit('/')
+  click_link('Sign Up')
 
-  fill_in('email', with: 'example1@example.com')
-  fill_in('password', with: 'password0')
-  fill_in('name', with: 'example')
-  fill_in('username', with: 'example')
-  click_button('submit')
+  fill_in('emailSignUp', with: 'example1@example.com')
+  fill_in('passwordSignUp', with: 'password0')
+  fill_in('nameSignUp', with: 'example')
+  fill_in('userNameSignUp', with: 'example')
+  click_button('submitSignUp')
 
   end
