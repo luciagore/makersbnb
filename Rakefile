@@ -56,32 +56,36 @@ task :test_dummy do
                VALUES('lucy@example.com', 'password0', 'Lucy', 'lucygore')"
   connection.exec(sql_query)
 
-  sql_query1 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+  sql_query1 = "INSERT INTO spaces (name_of_space, email, description, price_per_night,image_name, user_id)
                VALUES('Lucy''s space',
                       'lucy@example.com',
                       'description of Lucy space',
                       '50',
+                      'img3.jpg',
                       '1')"
   connection.exec(sql_query1)
-  sql_query2 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+  sql_query2 = "INSERT INTO spaces (name_of_space, email, description, price_per_night,image_name, user_id)
                VALUES('Ben''s space',
                       'lucy@example.com',
                       'description of Ben space',
                       '40',
+                      'img4.jpg',
                       '1')"
   connection.exec(sql_query2)
-  sql_query3 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+  sql_query3 = "INSERT INTO spaces (name_of_space, email, description, price_per_night,image_name, user_id)
                VALUES('Laura''s space',
                       'lucy@example.com',
                       'description of Laura space',
                       '30',
+                      'img2.jpg',
                       '1')"
   connection.exec(sql_query3)
-  sql_query4 = "INSERT INTO spaces (name_of_space, email, description, price_per_night, user_id)
+  sql_query4 = "INSERT INTO spaces (name_of_space, email, description, price_per_night,image_name, user_id)
                VALUES('Khie''s space',
                       'lucy@example.com',
                       'description of Khie space',
                       '20',
+                      'img1.jpg',
                       '1')"
   connection.exec(sql_query4)
 
