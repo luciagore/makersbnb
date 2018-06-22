@@ -8,17 +8,17 @@
       <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" id="top-nav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">The Posh Couch<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#"  style="color: #a43c1d">The Posh Couch<span class="sr-only">(current)</span></a>
           </li>
           <% if session[:id] %>
-            <a href="#" class="nav-link" data-toggle="modal" data-target="#listSpaceModal" id="postspace">List Space</a>
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#listSpaceModal" id="postspace"  style="color: #a43c1d">List Space</a>
             <a href id="signout">Sign Out, <span id="username"><%= @user.username %></span></a>
           <% else %>
             <li class="nav-item">
-              <a href = "#" class="nav-link" data-toggle="modal" data-target="#logInModal">Sign In</a>
+              <a href = "#" class="nav-link" data-toggle="modal" data-target="#logInModal" style="color: #a43c1d">Sign In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href='#' data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+              <a class="nav-link" href='#' data-toggle="modal" data-target="#signUpModal" style="color: #a43c1d">Sign Up</a>
             </li>
           <% end %>
         </ul>
