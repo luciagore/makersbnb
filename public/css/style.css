@@ -3,7 +3,6 @@
   text-align: center;
   padding: 10px 15px;
   font-size: .95em;
-  color: red;
   text-transform: uppercase;
 }
 
@@ -22,4 +21,8 @@
 .image_name{
   width: 300px;
   height: 200px;
+}
+
+.blockquote{
+  margin-bottom: 1.5em;
 }
