@@ -1,6 +1,6 @@
 "use strict";
 $(document).ready(function(){
-  $('#submitSignUp').one('click', function(){
+  $('#submitSignUp').on('click', function(){
     let email = $('#emailSignUp').val();
     let password = $('#passwordSignUp').val();
     let name = $('#nameSignUp').val();
