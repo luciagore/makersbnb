@@ -18,7 +18,10 @@ The questions we had to ask ourselves was: "Can you, with only a specification t
 2. Run `bundle install` to make sure that all the dependencies required are installed
 3. Run `rackup` in the Command Line and visit `localhost:9292` in your browser to visit the site!
 
-## How to run the tests 
+<img src="/images/Screen Shot 2018-07-19 at 16.09.01.png" />
+
+
+## How to run the tests
 
 1. Make sure the repo is cloned and you've run bundle install
 2. Run `rspec` in the command line
